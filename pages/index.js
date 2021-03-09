@@ -77,6 +77,7 @@ class Home extends React.Component {
     super(props);
     this.state = {
       movies: [],
+      error: null,
     };
   }
   //making asynchronous call
@@ -85,9 +86,13 @@ class Home extends React.Component {
   //   this.setState({ movies: results });
   // }
   componentDidMount() {
-    getMovies().then((resolve) => {
-      this.setState({ movies: resolve });
-    });
+    getMovies()
+      .then((resolve) => {
+        this.setState({ ...this.state, movies: resolve });
+      })
+      .catch((error) => {
+        this.setState({ ...this.state, error: error });
+      });
   }
   render() {
     return (
@@ -127,6 +132,9 @@ class Home extends React.Component {
               <div className="col-lg-9">
                 <Carousel />
                 <div className="row">
+                  {this.state.error && (
+                    <div className="alert alert-danger">{this.state.error}</div>
+                  )}
                   <MovieList movies={this.state.movies} />
                 </div>
               </div>
