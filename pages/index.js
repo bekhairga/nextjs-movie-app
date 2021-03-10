@@ -75,25 +75,35 @@ import { getMovies } from "../actions";
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      movies: [],
-      error: null,
-    };
+    // this.state = {
+    //   movies: [],
+    //   error: null,
+    // };
   }
   //making asynchronous call
   // async componentDidMount() {
   //   const results = await getMovies();
   //   this.setState({ movies: results });
   // }
-  componentDidMount() {
-    getMovies()
-      .then((resolve) => {
-        this.setState({ ...this.state, movies: resolve });
-      })
-      .catch((error) => {
-        this.setState({ ...this.state, error: error });
-      });
+
+  //getting items on client side
+  // componentDidMount() {
+  //   getMovies()
+  //     .then((resolve) => {
+  //       this.setState({ ...this.state, movies: resolve });
+  //     })
+  //     .catch((error) => {
+  //       this.setState({ ...this.state, error: error });
+  //     });
+  // }
+
+  static async getInitialProps() {
+    const movies = await getMovies();
+    return {
+      movies,
+    };
   }
+
   render() {
     return (
       <div>
@@ -132,10 +142,10 @@ class Home extends React.Component {
               <div className="col-lg-9">
                 <Carousel />
                 <div className="row">
-                  {this.state.error && (
-                    <div className="alert alert-danger">{this.state.error}</div>
-                  )}
-                  <MovieList movies={this.state.movies} />
+                  {/*{this.state.error && (*/}
+                  {/*  <div className="alert alert-danger">{this.state.error}</div>*/}
+                  {/*)}*/}
+                  <MovieList movies={this.props.movies} />
                 </div>
               </div>
             </div>
