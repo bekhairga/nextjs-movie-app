@@ -1,21 +1,23 @@
-const Carousel = () => {
+import React from "react";
+
+const Carousel = ({images}) => {
     return(
         <div id="carouselExampleIndicators" className="carousel slide my-4" data-ride="carousel">
             <ol className="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                {
+                    images.map((image, idx) =>(
+                            <li key={idx} className={idx === 1 ? 'active' : ''} data-target="#carouselExampleIndicators" data-slide-to={idx}></li>
+                        ))
+                }
             </ol>
             <div className="carousel-inner" role="listbox">
-                <div className="carousel-item active">
-                    <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide" />
-                </div>
-                <div className="carousel-item">
-                    <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide" />
-                </div>
-                <div className="carousel-item">
-                    <img className="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide" />
-                </div>
+                {images.map((image, idx) => {
+                    return(
+                        <div className={`carousel-item ${idx === 1 ? 'active' : ''}`}>
+                            <img className="d-block img-fluid image-carousel" src={image} alt={`${idx} slide`} />
+                        </div>
+                    )
+                })}
             </div>
             <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -25,8 +27,17 @@ const Carousel = () => {
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="sr-only">Next</span>
             </a>
+            <style jsx>{`
+                .carousel-item{
+                  height: 50vh;
+                }
+                .image-carousel{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+      `}</style>
         </div>
     )
 }
-
 export default Carousel;

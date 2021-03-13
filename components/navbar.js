@@ -3,9 +3,12 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container">
-        <a className="navbar-brand" href="#">
-          Start Bootstrap
-        </a>
+        <Link href='/'>
+          <a className="navbar-brand">
+            Movies
+          </a>
+        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
