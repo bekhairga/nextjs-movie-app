@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const MOVIE_DATA = [
   {
     id: "1",
@@ -40,3 +42,7 @@ export const getMovies = () => {
     }, 2000);
   });
 };
+const BASE_URL = 'http://localhost:3000'
+export const getPosts = () => {
+  return axios.get(`${BASE_URL}/api/v1/posts`).then(res=>res.data);
+}
