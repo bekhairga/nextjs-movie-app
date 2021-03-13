@@ -4,7 +4,6 @@ import Navbar from "../components/navbar";
 import SideMenu from "../components/sideMenu";
 import Carousel from "../components/carousel";
 import MovieList from "../components/movieList";
-import Footer from "../components/footer";
 import { getMovies } from "../actions";
 
 const Home = ({ movies }) => {
@@ -51,14 +50,6 @@ const Home = ({ movies }) => {
           </div>
         </div>
       </div>
-      <Footer />
-      <style jsx>
-        {`
-          .home-page {
-            padding-top: 55px;
-          }
-        `}
-      </style>
     </div>
   );
 };
