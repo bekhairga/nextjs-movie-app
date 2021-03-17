@@ -1,4 +1,9 @@
 const Modal = () => {
+	let closeButton = null;
+	const submitModal = () => {
+		alert('submitting modals');
+		closeButton.click();
+	};
 	return (
 		<>
 			<button
@@ -7,13 +12,13 @@ const Modal = () => {
 				data-toggle='modal'
 				data-target='#exampleModal'
 			>
-				Launch demo modal
+				Create Movie
 			</button>
 
 			<div
 				className='modal fade'
 				id='exampleModal'
-				tabindex='-1'
+				tabIndex='-1'
 				role='dialog'
 				aria-labelledby='exampleModalLabel'
 				aria-hidden='true'
@@ -36,13 +41,18 @@ const Modal = () => {
 						<div className='modal-body'>...</div>
 						<div className='modal-footer'>
 							<button
+								ref={(el) => (closeButton = el)}
 								type='button'
 								className='btn btn-secondary'
 								data-dismiss='modal'
 							>
 								Close
 							</button>
-							<button type='button' className='btn btn-primary'>
+							<button
+								type='button'
+								onClick={submitModal}
+								className='btn btn-primary'
+							>
 								Save changes
 							</button>
 						</div>
