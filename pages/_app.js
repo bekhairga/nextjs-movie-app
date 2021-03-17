@@ -4,6 +4,7 @@ import Head from "next/head";
 import React from "react";
 import App from "next/app";
 import Footer from "../components/footer";
+
 class MyApp extends App{
     constructor(props) {
         super(props);
@@ -16,7 +17,7 @@ class MyApp extends App{
             ...appProps,
         }
     }
-  render(){
+    render(){
       const {Component, pageProps} = this.props;
       return (
           <>
