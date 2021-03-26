@@ -80,6 +80,7 @@ export const getMovies = () => {
 };
 export const createMovie = (movie) => {
 	return new Promise((resolve, reject) => {
+		movie.id = Math.random().toString(36).substr(2, 7);
 		MOVIE_DATA.push(movie);
 		setTimeout(() => {
 			resolve(MOVIE_DATA);
