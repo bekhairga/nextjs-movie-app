@@ -18,6 +18,11 @@ app.prepare().then(() => {
 		return res.json(moviesData);
 	});
 
+	server.get('/api/v1/movies/:id', (req, res) => {
+		const { id } = req.params;
+		const movie = moviesData.find((el) => el.id === id);
+		return res.json(movie);
+	});
 	server.post('/api/v1/movies', (req, res) => {
 		const movie = req.body;
 		return res.json({ movie });
