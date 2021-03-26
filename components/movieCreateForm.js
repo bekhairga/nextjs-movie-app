@@ -1,9 +1,41 @@
-const MovieCreateForm = () => {
+import { useState } from 'react';
+
+const MovieCreateForm = ({ handleCreateMovie }) => {
+	const [form, setForm] = useState({
+		name: 'Some Movie',
+		description: 'Some description',
+	});
+	const handleChange = (event) => {
+		const target = event.target;
+		const name = target.name;
+		console.log(target);
+		setForm({
+			...form,
+			[name]: target.value,
+		});
+	};
+	const handleGenreChange = (event) => {
+		const options = event.target.options;
+		const value = [];
+		for (let i = 0; i < options.length; i++) {
+			if (options[i].selected) {
+				value.push(options[i].value);
+			}
+		}
+		setForm({
+			...form,
+			genre: value.toString(),
+		});
+	};
+	const submitForm = () => handleCreateMovie({ ...form });
 	return (
 		<form>
 			<div className='form-group'>
 				<label htmlFor='name'>Name</label>
 				<input
+					onChange={handleChange}
+					value={form.name}
+					name='name'
 					type='text'
 					className='form-control'
 					id='name'
@@ -14,7 +46,10 @@ const MovieCreateForm = () => {
 			<div className='form-group'>
 				<label htmlFor='description'>Description</label>
 				<input
+					onChange={handleChange}
+					value={form.description}
 					type='text'
+					name='description'
 					className='form-control'
 					id='description'
 					placeholder='Somewhere in Middle-earth...'
@@ -23,7 +58,10 @@ const MovieCreateForm = () => {
 			<div className='form-group'>
 				<label htmlFor='description'>Rating</label>
 				<input
+					onChange={handleChange}
+					value={form.rating}
 					type='number'
+					name='rating'
 					max='5'
 					min='0'
 					className='form-control'
@@ -37,7 +75,10 @@ const MovieCreateForm = () => {
 			<div className='form-group'>
 				<label htmlFor='image'>Image</label>
 				<input
+					onChange={handleChange}
+					value={form.image}
 					type='text'
+					name='image'
 					className='form-control'
 					id='image'
 					placeholder='http://.....'
@@ -46,7 +87,10 @@ const MovieCreateForm = () => {
 			<div className='form-group'>
 				<label htmlFor='cover'>Cover</label>
 				<input
+					onChange={handleChange}
+					value={form.cover}
 					type='text'
+					name='cover'
 					className='form-control'
 					id='cover'
 					placeholder='http://......'
@@ -54,11 +98,23 @@ const MovieCreateForm = () => {
 			</div>
 			<div className='form-group'>
 				<label htmlFor='longDesc'>Long Description</label>
-				<textarea className='form-control' id='longDesc' rows='3'></textarea>
+				<textarea
+					onChange={handleChange}
+					name='longDescription'
+					value={form.longDescription}
+					className='form-control'
+					id='longDescription'
+					rows='3'
+				></textarea>
 			</div>
 			<div className='form-group'>
 				<label htmlFor='genre'>Genre</label>
-				<select multiple className='form-control' id='genre'>
+				<select
+					onChange={handleGenreChange}
+					multiple
+					className='form-control'
+					id='genre'
+				>
 					<option>drama</option>
 					<option>music</option>
 					<option>adventure</option>
@@ -66,6 +122,9 @@ const MovieCreateForm = () => {
 					<option>action</option>
 				</select>
 			</div>
+			<button type='button' onClick={submitForm} className='btn btn-primary'>
+				Create
+			</button>
 		</form>
 	);
 };
