@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { getMovieById, deleteMovie } from '../../actions';
+import { getMovieById, deleteMovie } from '../../../actions';
 const Movie = ({ movie }) => {
 	const router = useRouter();
 	const { id } = router.query;

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const MovieCreateForm = ({ handleCreateMovie }) => {
+const MovieCreateForm = ({ handleCreateMovie, initialData }) => {
 	const [form, setForm] = useState({
 		name: '',
 		description: '',
@@ -33,6 +33,14 @@ const MovieCreateForm = ({ handleCreateMovie }) => {
 		});
 	};
 	const submitForm = () => handleCreateMovie({ ...form });
+	const [isInitialDataLoaded, setInitialDataLoaded] = useState(false);
+	useEffect(() => {
+		if (initialData) {
+			setForm(initialData);
+			setInitialDataLoaded(true);
+		}
+	}, [isInitialDataLoaded, initialData]);
+
 	return (
 		<form>
 			<div className='form-group'>
