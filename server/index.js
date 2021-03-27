@@ -1,12 +1,15 @@
 const next = require('next');
 const express = require('express');
-const bodyParser = require('body-parser');
+
+const fs = require('fs');
+const path = require('path');
+const filePath = './data.json';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const moviesData = require('./data.json');
+const moviesData = require(filePath);
 
 app.prepare().then(() => {
 	const server = express();
@@ -25,7 +28,17 @@ app.prepare().then(() => {
 	});
 	server.post('/api/v1/movies', (req, res) => {
 		const movie = req.body;
-		return res.json({ movie });
+		moviesData.push(movie);
+
+		const pathToFile = path.join(__dirname, filePath);
+		const stringifiedData = JSON.stringify(moviesData, null, 2);
+		fs.writeFile(pathToFile, stringifiedData, (err) => {
+			if (err) {
+				console.log(err);
+				return res.status(422).send(err);
+			}
+			return res.json('movie has been created');
+		});
 	});
 
 	server.patch('/api/v1/movies/:id', (req, res) => {
