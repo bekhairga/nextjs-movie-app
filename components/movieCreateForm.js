@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const MovieCreateForm = ({ handleCreateMovie, initialData }) => {
+const MovieCreateForm = ({ handleMovie, initialData }) => {
 	const defaultForm = {
 		name: '',
 		description: '',
@@ -15,7 +15,6 @@ const MovieCreateForm = ({ handleCreateMovie, initialData }) => {
 	const handleChange = (event) => {
 		const target = event.target;
 		const name = target.name;
-		console.log(target);
 		setForm({
 			...form,
 			[name]: target.value,
@@ -34,7 +33,9 @@ const MovieCreateForm = ({ handleCreateMovie, initialData }) => {
 			genre: value.toString(),
 		});
 	};
-	const submitForm = () => handleCreateMovie({ ...form });
+	const submitForm = () => {
+		handleMovie({ ...form });
+	};
 	return (
 		<form>
 			<div className='form-group'>
@@ -130,7 +131,7 @@ const MovieCreateForm = ({ handleCreateMovie, initialData }) => {
 				</select>
 			</div>
 			<button type='button' onClick={submitForm} className='btn btn-primary'>
-				Create
+				{initialData ? 'Update' : 'Create'}
 			</button>
 		</form>
 	);

@@ -33,7 +33,7 @@
     "image": "https://img.cinemablend.com/filter:scale/quill/0/f/5/2/a/6/0f52a6843a25c1a5c1f9a0c00548cad9e1d912e2.jpg?mw=600"
   },
   {
-    "name": "testing movie",
+    "name": "testing movie up",
     "description": "testing movie description",
     "rating": "4",
     "image": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
@@ -41,5 +41,25 @@
     "longDescription": "long description of the testing movie",
     "genre": "drama",
     "id": "h9mg8vo"
+  },
+  {
+    "name": "some",
+    "description": "some",
+    "rating": "4",
+    "image": "kasjdkfjak",
+    "cover": "adfjkasjdkf",
+    "longDescription": "ajdlkfajlksdjfal",
+    "genre": "drama,music",
+    "id": "ziux6ql"
+  },
+  {
+    "name": "some",
+    "description": "someasd",
+    "rating": "2",
+    "image": "kasjdkfjak",
+    "cover": "adfjkasjdkf",
+    "longDescription": "ajdlkfajlksdjfal",
+    "genre": "drama,music",
+    "id": "lgo9go8"
   }
 ]
