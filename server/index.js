@@ -57,7 +57,6 @@ app.prepare().then(() => {
 			return res.json(movie);
 		});
 	});
-
 	server.delete('/api/v1/movies/:id', (req, res) => {
 		const id = req.params.id;
 

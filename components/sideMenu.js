@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Modal from './modal';
 import MovieCreateForm from './movieCreateForm';
 import { createMovie } from '../actions/index';
-const SideMenu = ({ categories }) => {
+const SideMenu = ({ categories, changeCategory, activeCategory }) => {
 	let modalRef = null;
 	const router = useRouter();
 	const handleCreateMovie = (movie) => {
@@ -20,7 +20,14 @@ const SideMenu = ({ categories }) => {
 			<h1 className='my-4'>Shop Name</h1>
 			<div className='list-group'>
 				{categories.map((category) => (
-					<a href='#' key={category.id} className='list-group-item'>
+					<a
+						href='#'
+						onClick={() => changeCategory(category.name)}
+						key={category.id}
+						className={`list-group-item ${
+							category.name === activeCategory ? 'active' : ''
+						}`}
+					>
 						{category.name}
 					</a>
 				))}
